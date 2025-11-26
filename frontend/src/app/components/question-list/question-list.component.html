@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="header">
+    <h1>Questions & Answers</h1>
+    <button class="btn btn-primary" (click)="askQuestion()">Ask a Question</button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading questions...</div>
+
+  <div *ngIf="!loading && questions.length === 0" class="no-questions">
+    <p>No questions found. <a (click)="askQuestion()" class="link">Ask the first question!</a></p>
+  </div>
+
+  <div *ngIf="!loading && questions.length > 0" class="questions-list">
+    <div *ngFor="let question of questions" class="question-card">
+      <h3 (click)="viewQuestion(question._id)" class="question-title">{{ question.title }}</h3>
+      <p class="question-description">{{ question.description }}</p>
+      <div class="question-meta">
+        <span class="author">By: {{ question.author }}</span>
+        <span class="date">{{ question.createdAt  }}</span>
+      </div>
+      <div class="question-actions">
+        <button class="btn btn-secondary" (click)="viewQuestion(question._id)">View & Answer</button>
+        <button class="btn btn-danger" (click)="deleteQuestion(question._id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
