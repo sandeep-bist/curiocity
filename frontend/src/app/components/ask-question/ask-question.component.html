@@ -1,0 +1,53 @@
+
+
+<div class="container">
+  <div class="form-container">
+    <h2>Ask a New Question</h2>
+    
+    <div *ngIf="submitted" class="alert alert-success">
+      Question posted successfully! Redirecting...
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Question Title:</label>
+        <input
+          type="text"
+          id="title"
+          [(ngModel)]="question.title"
+          name="title"
+          placeholder="Enter your question title"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          [(ngModel)]="question.description"
+          name="description"
+          placeholder="Provide more details..."
+          class="form-control"
+          rows="5"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="author">Your Name:</label>
+        <input
+          type="text"
+          id="author"
+          [(ngModel)]="question.author"
+          name="author"
+          placeholder="Enter your name"
+          class="form-control"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
+        {{ loading ? 'Posting...' : 'Post Question' }}
+      </button>
+    </form>
+  </div>
+</div>
